@@ -55,8 +55,8 @@ Amax amax = new Amax(appId, appSecret);
 try {
     amax
             .setRewardsToken("[rewards_token]")
-            .setAddress("[subscriber_number]")
-            .setPromo("FREE10MB")
+            .setAddress("[+63 subscriber_number]")
+            .setPromo("[promo]")
             .sendRewardRequest(new AsyncHandler() {
                 @Override
                 public void response(HttpResponse response) throws HttpResponseException {
@@ -82,10 +82,10 @@ BinarySms sms = new BinarySms("[short_code]", "[access_token]");
 
 try {
     sms
-        .setUserDataHeader("0605040B8423")
-        .setDataCodingScheme(1)
-        .setReceiverAddress("[subscriber_number]")
-        .setBinaryMessage("02056A0045C60C037777772E6465762E6D6F62692F69735F66756E2E68746D6C0")
+        .setUserDataHeader("[header]")
+        .setDataCodingScheme([scheme])
+        .setReceiverAddress("[+63 subscriber_number]")
+        .setBinaryMessage("[message]")
         .sendBinaryMessage(new AsyncHandler() {
             @Override
             public void response(HttpResponse response) throws HttpResponseException {
@@ -110,7 +110,7 @@ Location location = new Location("[access_token]");
 
 try {
     location
-            .setAddress("[subscriber_number]")
+            .setAddress("[+63 subscriber_number]")
             .setRequestedAccuracy(10)
             .getLocation(new AsyncHandler() {
                 @Override
@@ -139,10 +139,10 @@ try {
 
     payment
             .setAmount(0.00)
-            .setDescription("My Description")
-            .setEndUserId("[subscriber_number]")
+            .setDescription("[description]")
+            .setEndUserId("[+63 subscriber_number]")
             .setReferenceCode("[reference_code]")
-            .setTransactionOperationStatus("Charged")
+            .setTransactionOperationStatus("[status]")
             .sendPaymentRequest(new AsyncHandler() {
                 @Override
                 public void response(HttpResponse response) throws HttpResponseException {
@@ -198,8 +198,8 @@ Sms sms = new Sms("[short_code]", "[access_token]");
 try {
     sms
         .setClientCorrelator("12345")
-        .setReceiverAddress("[subscriber_number]")
-        .setMessage("Hello World")
+        .setReceiverAddress("[+63 subscriber_number]")
+        .setMessage("[message]")
         .sendMessage(new AsyncHandler() {
             @Override
             public void response(HttpResponse response) throws HttpResponseException {
@@ -227,7 +227,7 @@ try {
     Subscriber subscriber = new Subscriber("[access_token]");
 
     subscriber
-            .setAddress("[subscriber_number]")
+            .setAddress("[+63 subscriber_number]")
             .getSubscriberBalance(new AsyncHandler() {
                 @Override
                 public void response(HttpResponse response) throws HttpResponseException {
@@ -244,7 +244,7 @@ try {
     Subscriber subscriber2 = new Subscriber("[access_token]");
 
     subscriber2
-            .setAddress("[subscriber_number]")
+            .setAddress("[+63 subscriber_number]")
             .getSubscriberReloadAmount(new AsyncHandler() {
                 @Override
                 public void response(HttpResponse response) throws HttpResponseException {
@@ -271,7 +271,7 @@ try {
     Subscriber subscriber = new Subscriber("[access_token]");
 
     subscriber
-            .setAddress("[subscriber_number]")
+            .setAddress("[+63 subscriber_number]")
             .getSubscriberReloadAmount(new AsyncHandler() {
                 @Override
                 public void response(HttpResponse response) throws HttpResponseException {
@@ -299,8 +299,8 @@ try {
 
     ussd
             .setSenderAddress("[short_code]")
-            .setUssdMessage("Simple USSD Message\n1: Hello \n2: Hello")
-            .setAddress("[subscriber_number]")
+            .setUssdMessage("[message]")
+            .setAddress("[+63 subscriber_number]")
             .setFlash(false)
             .sendUssdRequest(new AsyncHandler() {
                 @Override
@@ -328,9 +328,9 @@ Ussd ussd = new Ussd("[access_token]");
 
 ussd
         .setSessionId("[session_id]")
-        .setAddress("[subscriber_number]")
+        .setAddress("[+63 subscriber_number]")
         .setSenderAddress("[short_code]")
-        .setUssdMessage("Simple USSD Message\n1: Foo\n2: Foo")
+        .setUssdMessage("[message]")
         .setFlash(false)
         .replyUssdRequest(new AsyncHandler() {
             @Override
