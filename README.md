@@ -13,8 +13,8 @@ application.
 ```java
 import ph.com.globe.connect.Authentication;
 
-String appId = "5ozgSgeRyeHzacXo55TR65HnqoAESbAz";
-String appSecret = "3dbcd598f268268e13550c87134f8de0ec4ac1100cf0a68a2936d07fc9e2459e";
+String appId = "[app_id]";
+String appSecret = "[app_secret]";
 
 Authentication auth = new Authentication(appId, appSecret);
 
@@ -24,7 +24,7 @@ EditText out = (EditText) findViewById(R.id.output);
 out.setText(dialogUrl);
 
 try {
-    auth.getAccessToken("G4HBMexKfaM9E7SG4LpkHRBoLGf9Go6qSnBno8HRKXnes7doqEukgq4bCq59nKfR7KX6Uorknysa8EXyHoxEaRhzGo57tLn4gduLkaE7S9ke9RtpBjgauaeRKpu4RcoX6y4cRaxuGzjkKuyzedXtkra8qSbe47LueyonxtgoEorhpkEoaHLkkResXyKR4U4K996f4EqB7CRLoKGuBjXorsAxnrpH9poqrSAEo6ef7XLGXHyK9R9SLregxfaM6XxH",
+    auth.getAccessToken("[code]",
     new AsyncHandler() {
                 @Override
                 public void response(HttpResponse response) throws HttpResponseException {
@@ -47,15 +47,15 @@ try {
 ```java
 import ph.com.globe.connect.Amax;
 
-String appId = "5ozgSgeRyeHzacXo55TR65HnqoAESbAz";
-String appSecret = "3dbcd598f268268e13550c87134f8de0ec4ac1100cf0a68a2936d07fc9e2459e";
+String appId = "[app_id]";
+String appSecret = "[app_secret]";
 
 Amax amax = new Amax(appId, appSecret);
 
 try {
     amax
-            .setRewardsToken("w7hYKxrE7ooHqXNBQkP9lg")
-            .setAddress("9065272450")
+            .setRewardsToken("[rewards_token]")
+            .setAddress("[subscriber_number]")
             .setPromo("FREE10MB")
             .sendRewardRequest(new AsyncHandler() {
                 @Override
@@ -78,13 +78,13 @@ try {
 ```java
 import ph.com.globe.connect.BinarySms;
 
-BinarySms sms = new BinarySms("21584130", "JO3SpcC-AFiC461wgOxUPDmsOTc5YiMayoK1GnQcduc");
+BinarySms sms = new BinarySms("[short_code]", "[access_token]");
 
 try {
     sms
         .setUserDataHeader("0605040B8423")
         .setDataCodingScheme(1)
-        .setReceiverAddress("9065272450")
+        .setReceiverAddress("[subscriber_number]")
         .setBinaryMessage("02056A0045C60C037777772E6465762E6D6F62692F69735F66756E2E68746D6C0")
         .sendBinaryMessage(new AsyncHandler() {
             @Override
@@ -106,11 +106,11 @@ try {
 ###### Figure 4. Location
 
 ```java
-Location location = new Location("JO3SpcC-AFiC461wgOxUPDmsOTc5YiMayoK1GnQcduc");
+Location location = new Location("[access_token]");
 
 try {
     location
-            .setAddress("9065272450")
+            .setAddress("[subscriber_number]")
             .setRequestedAccuracy(10)
             .getLocation(new AsyncHandler() {
                 @Override
@@ -135,13 +135,13 @@ try {
 import ph.com.globe.connect.Payment;
 
 try {
-    Payment payment = new Payment("JO3SpcC-AFiC461wgOxUPDmsOTc5YiMayoK1GnQcduc");
+    Payment payment = new Payment("[access_token]");
 
     payment
             .setAmount(0.00)
             .setDescription("My Description")
-            .setEndUserId("9065272450")
-            .setReferenceCode("41301000221")
+            .setEndUserId("[subscriber_number]")
+            .setReferenceCode("[reference_code]")
             .setTransactionOperationStatus("Charged")
             .sendPaymentRequest(new AsyncHandler() {
                 @Override
@@ -166,11 +166,11 @@ try {
 import ph.com.globe.connect.Payment;
 
 try {
-    Payment payment = new Payment("JO3SpcC-AFiC461wgOxUPDmsOTc5YiMayoK1GnQcduc");
+    Payment payment = new Payment("[access_token]");
 
     payment
-            .setAppId("5ozgSgeRyeHzacXo55TR65HnqoAESbAz")
-            .setAppSecret("3dbcd598f268268e13550c87134f8de0ec4ac1100cf0a68a2936d07fc9e2459e")
+            .setAppId("[app_id]")
+            .setAppSecret("[app_secret]")
             .getLastReferenceCode(new AsyncHandler() {
                 @Override
                 public void response(HttpResponse response) throws HttpResponseException {
@@ -193,12 +193,12 @@ try {
 ```java
 import ph.com.globe.connect.Sms;
 
-Sms sms = new Sms("21584130", "JO3SpcC-AFiC461wgOxUPDmsOTc5YiMayoK1GnQcduc");
+Sms sms = new Sms("[short_code]", "[access_token]");
 
 try {
     sms
         .setClientCorrelator("12345")
-        .setReceiverAddress("+639065272450")
+        .setReceiverAddress("[subscriber_number]")
         .setMessage("Hello World")
         .sendMessage(new AsyncHandler() {
             @Override
@@ -224,10 +224,10 @@ try {
 import ph.com.globe.connect.Subscriber;
 
 try {
-    Subscriber subscriber = new Subscriber("JO3SpcC-AFiC461wgOxUPDmsOTc5YiMayoK1GnQcduc");
+    Subscriber subscriber = new Subscriber("[access_token]");
 
     subscriber
-            .setAddress("639065272450")
+            .setAddress("[subscriber_number]")
             .getSubscriberBalance(new AsyncHandler() {
                 @Override
                 public void response(HttpResponse response) throws HttpResponseException {
@@ -241,10 +241,10 @@ try {
                 }
             });
 
-    Subscriber subscriber2 = new Subscriber("JO3SpcC-AFiC461wgOxUPDmsOTc5YiMayoK1GnQcduc");
+    Subscriber subscriber2 = new Subscriber("[access_token]");
 
     subscriber2
-            .setAddress("639065272450")
+            .setAddress("[subscriber_number]")
             .getSubscriberReloadAmount(new AsyncHandler() {
                 @Override
                 public void response(HttpResponse response) throws HttpResponseException {
@@ -268,10 +268,10 @@ try {
 import ph.com.globelabs.Subscriber;
 
 try {
-    Subscriber subscriber = new Subscriber("JO3SpcC-AFiC461wgOxUPDmsOTc5YiMayoK1GnQcduc");
+    Subscriber subscriber = new Subscriber("[access_token]");
 
     subscriber
-            .setAddress("639065272450")
+            .setAddress("[subscriber_number]")
             .getSubscriberReloadAmount(new AsyncHandler() {
                 @Override
                 public void response(HttpResponse response) throws HttpResponseException {
@@ -295,12 +295,12 @@ try {
 import ph.com.globe.connect.Ussd;
 
 try {
-    Ussd ussd = new Ussd("JO3SpcC-AFiC461wgOxUPDmsOTc5YiMayoK1GnQcduc");
+    Ussd ussd = new Ussd("[access_token]");
 
     ussd
-            .setSenderAddress("21584130")
+            .setSenderAddress("[short_code]")
             .setUssdMessage("Simple USSD Message\n1: Hello \n2: Hello")
-            .setAddress("9065272450")
+            .setAddress("[subscriber_number]")
             .setFlash(false)
             .sendUssdRequest(new AsyncHandler() {
                 @Override
@@ -324,12 +324,12 @@ try {
 ```java
 import ph.com.globe.connect.Ussd;
 
-Ussd ussd = new Ussd("JO3SpcC-AFiC461wgOxUPDmsOTc5YiMayoK1GnQcduc");
+Ussd ussd = new Ussd("[access_token]");
 
 ussd
-        .setSessionId("12345")
-        .setAddress("9065272450")
-        .setSenderAddress("21584130")
+        .setSessionId("[session_id]")
+        .setAddress("[subscriber_number]")
+        .setSenderAddress("[short_code]")
         .setUssdMessage("Simple USSD Message\n1: Foo\n2: Foo")
         .setFlash(false)
         .replyUssdRequest(new AsyncHandler() {
