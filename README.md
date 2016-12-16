@@ -138,7 +138,7 @@ try {
     Payment payment = new Payment("[access_token]");
 
     payment
-            .setAmount(0.00)
+            .setAmount("[amount]")
             .setDescription("[description]")
             .setEndUserId("[+63 subscriber_number]")
             .setReferenceCode("[reference_code]")
