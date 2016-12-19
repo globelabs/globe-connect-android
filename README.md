@@ -197,7 +197,7 @@ Sms sms = new Sms("[short_code]", "[access_token]");
 
 try {
     sms
-        .setClientCorrelator("12345")
+        .setClientCorrelator("[client_correlator]")
         .setReceiverAddress("[+63 subscriber_number]")
         .setMessage("[message]")
         .sendMessage(new AsyncHandler() {
