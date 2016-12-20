@@ -1,4 +1,4 @@
-/* 
+/*
  * The MIT License
  *
  * Copyright 2016 charleszamora.
@@ -28,38 +28,38 @@ import java.util.HashMap;
 
 /**
  * AMAX / Rewards Class.
- * 
+ *
  * @author Charles Zamora czamora@openovate.com
  */
 public class Amax extends Context {
     /* Amax api url */
     private final String AMAX_URL = "https://devapi.globelabs.com.ph/rewards/v1/transactions/send";
-    
+
     /* API app id */
     protected String appId     = null;
-    
+
     /* API app secret */
     protected String appSecret = null;
-    
+
     /* Rewards token */
     protected String rewardsToken = null;
-    
+
     /* Subscriber address */
     protected String address = null;
-    
+
     /* Defined promo */
     protected String promo = null;
-    
+
     /**
      * Create Amax class without paramters.
      */
     public Amax() {
     }
-    
+
     /**
      * Create Amax class with appId and
      * appSecret parameters.
-     * 
+     *
      * @param appId app id
      * @param appSecret app secret
      */
@@ -69,80 +69,79 @@ public class Amax extends Context {
         // set app secret
         this.appSecret = appSecret;
     }
-    
+
     /**
      * Set API app id.
-     * 
+     *
      * @param  appId app id
      * @return this
      */
     public Amax setAppId(String appId) {
         // set app id
         this.appId = appId;
-        
+
         return this;
     }
-    
+
     /**
      * Set API app secret.
-     * 
+     *
      * @param appSecret app secret
-     * @return this 
+     * @return this
      */
     public Amax setAppSecret(String appSecret) {
         // set app secret
         this.appSecret = appSecret;
-        
+
         return this;
     }
-    
+
     /**
      * Set rewards token.
-     * 
+     *
      * @param  rewardsToken rewards token
      * @return this
      */
     public Amax setRewardsToken(String rewardsToken) {
         // set rewards token
         this.rewardsToken = rewardsToken;
-        
+
         return this;
     }
-    
+
     /**
      * Set subscriber address.
-     * 
+     *
      * @param  address subscriber address
      * @return this
      */
     public Amax setAddress(String address) {
         // set subscriber address
         this.address = address;
-        
+
         return this;
     }
-    
+
     /**
      * Set defined promo.
-     * 
+     *
      * @param  promo defined promo
      * @return this
      */
     public Amax setPromo(String promo) {
         // set defined promo
         this.promo = promo;
-        
+
         return this;
     }
-    
+
     /**
      * Send rewards request.
-     * 
+     *
      * @param  rewardsToken rewards token
      * @param  address subscriber address
      * @param  promo defined promo
-     * @param  asyncHandler
-     * @return void
+     * @param  asyncHandler async handler instance
      * @throws HttpRequestException http request exception
      * @throws HttpResponseException http response exception
      */
@@ -152,16 +151,16 @@ public class Amax extends Context {
         String promo,
         AsyncHandler asyncHandler)
         throws HttpRequestException, HttpResponseException {
-        
+
         // set url
         String url = this.AMAX_URL;
-        
+
         // set base data
         Map<String, Object> data = new HashMap<>();
-        
+
         // set outbound reward reqeuest data
         Map<String, Object> orr = new HashMap<>();
-        
+
         // set app id
         orr.put("app_id", this.appId);
         // set app secret
@@ -172,7 +171,7 @@ public class Amax extends Context {
         orr.put("address", address);
         // set promo
         orr.put("promo", promo);
-        
+
         // set outbound reward request data
         data.put("outboundRewardRequest", new org.json.JSONObject(orr));
 
@@ -187,18 +186,17 @@ public class Amax extends Context {
         // execute async post
         .execute("post");
     }
-    
+
     /**
      * Send rewards request.
      *
-     * @param  asyncHandler
-     * @return void
+     * @param  asyncHandler async handler instance
      * @throws HttpRequestException http request exception
      * @throws HttpResponseException http response exception
      */
     public void sendRewardRequest(AsyncHandler asyncHandler)
         throws HttpRequestException, HttpResponseException {
-        
+
         // call send reward request
         this.sendRewardRequest(this.rewardsToken, this.address, this.promo, asyncHandler);
     }

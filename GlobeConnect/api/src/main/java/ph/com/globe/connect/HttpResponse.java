@@ -1,4 +1,4 @@
-/* 
+/*
  * The MIT License
  *
  * Copyright 2016 charleszamora.
@@ -128,6 +128,7 @@ public class HttpResponse {
      * Returns the response string.
      *
      * @return String
+     * @throws HttpResponseException http response exception
      */
     public String getResponse() throws HttpResponseException {
         // try parsing response

@@ -1,4 +1,4 @@
-/* 
+/*
  * The MIT License
  *
  * Copyright 2016 charleszamora.
@@ -29,91 +29,90 @@ import org.apache.http.client.utils.URIBuilder;
 
 /**
  * Subscriber Data Query.
- * 
+ *
  * @author Charles Zamora czamora@openovate.com
  */
 public class Subscriber extends Context {
     /* Subscriber url */
     private final String SUBSCRIBER_URL = "https://devapi.globelabs.com.ph/location/v1/queries/balance";
-    
+
     /* Subscriber reload amount url */
     private final String SUBSCRIBER_RA_URL = "https://devapi.globelabs.com.ph/location/v1/queries/reload_amount";
-    
+
     /* API Access token */
     protected String accessToken = null;
-    
+
     /* Subscribers address */
     protected String address = null;
-    
+
     /**
      * Create Subscriber class without parameters.
      */
     public Subscriber() {
     }
-    
+
     /**
      * Create Subscriber class with access
      * token parameter.
-     * 
+     *
      * @param accessToken access token
      */
     public Subscriber(String accessToken) {
         // set access token
         this.accessToken = accessToken;
     }
-    
+
     /**
      * Sets access token.
-     * 
+     *
      * @param  accessToken access token
      * @return this
      */
     public Subscriber setAccessToken(String accessToken) {
         // set access token
         this.accessToken = accessToken;
-        
+
         return this;
     }
-    
+
     /**
      * Set subscriber address.
-     * 
+     *
      * @param  address subscriber address
      * @return this
      */
     public Subscriber setAddress(String address) {
         // set address
         this.address = address;
-        
+
         return this;
     }
-    
+
     /**
      * Get subscriber balance request.
-     * 
+     *
      * @param  address subscriber address
-     * @param  asyncHandler
-     * @return void
+     * @param  asyncHandler async handler instance
      * @throws ApiException api exception
      * @throws HttpRequestException http request exception
      * @throws HttpResponseException http response exception
      */
     public void getSubscriberBalance(String address, AsyncHandler asyncHandler)
         throws ApiException, HttpRequestException, HttpResponseException {
-        
+
         // set request url
         String url = this.SUBSCRIBER_URL;
-        
+
         // build url
         try {
             // initialize url builder
             URIBuilder builder = new URIBuilder(url);
-            
+
             // set access token parameter
             builder.setParameter("access_token", this.accessToken);
             // set the address
             builder.setParameter("address", address);
-            
+
             // build the url
             url = builder.build().toString();
         } catch(URISyntaxException e) {
@@ -130,49 +129,47 @@ public class Subscriber extends Context {
         // send get request
         .execute("get");
     }
-    
+
     /**
      * Get subscriber balance request.
      *
-     * @param  asyncHandler
-     * @return void
+     * @param  asyncHandler async handler instance
      * @throws ApiException api exception
      * @throws HttpRequestException http request exception
      * @throws HttpResponseException  http response exception
      */
     public void getSubscriberBalance(AsyncHandler asyncHandler)
         throws ApiException, HttpRequestException, HttpResponseException {
-        
+
         // call get subscriber balance
         this.getSubscriberBalance(this.address, asyncHandler);
     }
-    
+
     /**
      * Get subscriber reload amount.
-     * 
+     *
      * @param  address subscriber address
-     * @param  asyncHandler
-     * @return void
+     * @param  asyncHandler async handler instance
      * @throws ApiException api exception
      * @throws HttpRequestException http request exception
      * @throws HttpResponseException http response exception
      */
     public void getSubscriberReloadAmount(String address, AsyncHandler asyncHandler)
         throws ApiException, HttpRequestException, HttpResponseException {
-        
+
         // set request url
         String url = this.SUBSCRIBER_RA_URL;
-        
+
         // build url
         try {
             // initialize url builder
             URIBuilder builder = new URIBuilder(url);
-            
+
             // set access token parameter
             builder.setParameter("access_token", this.accessToken);
             // set the address
             builder.setParameter("address", address);
-            
+
             // build the url
             url = builder.build().toString();
         } catch(URISyntaxException e) {
@@ -189,19 +186,18 @@ public class Subscriber extends Context {
         // send get request
         .execute("get");
     }
-    
+
     /**
      * Get subscriber reload amount.
      *
-     * @param  asyncHandler
-     * @return void
+     * @param  asyncHandler async handler instance
      * @throws ApiException api exception
      * @throws HttpRequestException http request exception
      * @throws HttpResponseException http response exception
      */
     public void getSubscriberReloadAmount(AsyncHandler asyncHandler)
         throws ApiException, HttpRequestException, HttpResponseException {
-        
+
         // call get subscriber reload amount
         this.getSubscriberReloadAmount(this.address, asyncHandler);
     }

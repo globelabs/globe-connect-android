@@ -1,4 +1,4 @@
-/* 
+/*
  * The MIT License
  *
  * Copyright 2016 charleszamora.
@@ -91,7 +91,7 @@ public class HttpRequest extends AsyncTask<String, Integer, CloseableHttpRespons
     /**
      * Set async handler.
      *
-     * @param  asyncHandler
+     * @param  asyncHandler async handler instance
      * @return this
      */
     public HttpRequest setAsyncHandler(AsyncHandler asyncHandler) {

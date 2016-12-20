@@ -1,4 +1,4 @@
-/* 
+/*
  * The MIT License
  *
  * Copyright 2016 charleszamora.
@@ -28,66 +28,66 @@ import java.util.HashMap;
 
 /**
  * BinarySms Class.
- * 
+ *
  * @author charleszamora
  */
 public class BinarySms extends Sms {
     /* Sms-Binary API url */
     private final String SMS_BIN_URL = "https://devapi.globelabs.com.ph/binarymessaging/v1/outbound/%s/requests";
-    
+
     /* Message UDH */
     protected String userDataHeader = null;
-    
+
     /* Data coding of the message */
     protected int dataCodingScheme = 0;
-    
+
     /* Binary message */
     protected String binaryMessage = null;
-    
+
     /**
      * Create BinarySms class without parameters.
      */
     public BinarySms() {
         super();
     }
-    
+
     /**
      * Create BinarySms class with sendAddress parameter.
-     * 
+     *
      * @param senderAddress app short code
      */
     public BinarySms(String senderAddress) {
         super(senderAddress);
     }
-    
+
     /**
      * Create BinarySms class with senderAddress and
      * accessToken parameter.
-     * 
+     *
      * @param senderAddress app short code
      * @param accessToken access token
      */
     public BinarySms(String senderAddress, String accessToken) {
         super(senderAddress, accessToken);
     }
-    
+
     /**
      * Sets sender address (Short Code)
-     * 
+     *
      * @param  senderAddress app short code
-     * @return this 
+     * @return this
      */
     @Override
     public BinarySms setSenderAddress(String senderAddress) {
         // call base method
         super.setSenderAddress(senderAddress);
-        
+
         return this;
     }
-    
+
     /**
      * Sets access token.
-     * 
+     *
      * @param  accessToken access token
      * @return this
      */
@@ -95,13 +95,13 @@ public class BinarySms extends Sms {
     public BinarySms setAccessToken(String accessToken) {
         // call base method
         super.setAccessToken(accessToken);
-        
+
         return this;
     }
-    
+
     /**
      * Sets receiver address.
-     * 
+     *
      * @param  receiverAddress receiver address
      * @return this
      */
@@ -109,58 +109,57 @@ public class BinarySms extends Sms {
     public BinarySms setReceiverAddress(String receiverAddress) {
         // call base method
         super.setReceiverAddress(receiverAddress);
-        
+
         return this;
     }
-    
+
     /**
      * Sets user data header.
-     * 
+     *
      * @param  userDataHeader user data header
      * @return this
      */
     public BinarySms setUserDataHeader(String userDataHeader) {
         // set user data header
         this.userDataHeader = userDataHeader;
-        
+
         return this;
     }
-    
+
     /**
      * Sets data coding scheme.
-     * 
+     *
      * @param  dataCodingScheme data coding scheme
      * @return this
      */
     public BinarySms setDataCodingScheme(int dataCodingScheme) {
         // set data coding scheme
         this.dataCodingScheme = dataCodingScheme;
-        
+
         return this;
     }
-    
+
     /**
      * Sets binary message.
-     * 
+     *
      * @param  binaryMessage binary message
      * @return this
      */
     public BinarySms setBinaryMessage(String binaryMessage) {
         // set binary message
         this.binaryMessage = binaryMessage;
-        
+
         return this;
     }
-    
+
     /**
      * Sends binary message request.
-     * 
+     *
      * @param  userDataHeader user data header
      * @param  dataCodingScheme data coding scheme
      * @param  receiverAddress receiver address
      * @param  binaryMessage binary message
-     * @param  asyncHandler
-     * @return void
+     * @param  asyncHandler async handler instance
      * @throws ApiException api exception
      * @throws HttpRequestException http request exception
      * @throws HttpResponseException http response exception
@@ -172,37 +171,37 @@ public class BinarySms extends Sms {
         String binaryMessage,
         AsyncHandler asyncHandler)
         throws ApiException, HttpRequestException, HttpResponseException {
-        
+
         // get the url
         String url = this.buildUrl(this.SMS_BIN_URL);
-        
+
         // set base data
         Map<String, Object> data = new HashMap<>();
-    
+
         // set outbound binary messsage request data
         Map<String, Object> obmr = new HashMap<>();
-        
+
         // set message
         Map<String, String> msg = new HashMap<>();
-        
+
         // set sender address
         obmr.put("senderAddress", this.senderAddress);
-        
+
         // set binary message
         msg.put("message", binaryMessage);
-        
+
         // set user data header
         obmr.put("userDataHeader", userDataHeader);
-        
+
         // set data coding scheme
         obmr.put("dataCodingScheme", Integer.toString(dataCodingScheme));
-        
+
         // set address
         obmr.put("address", receiverAddress);
-        
+
         // set outbound binary message
         obmr.put("outboundBinaryMessage", new org.json.JSONObject(msg));
-        
+
         // set to base data
         data.put("outboundBinaryMessageRequest", new org.json.JSONObject(obmr));
 
@@ -217,24 +216,23 @@ public class BinarySms extends Sms {
         // execute async post
         .execute("post");
     }
-    
+
     /**
      * Sends binary message request.
      *
-     * @param  asyncHandler
-     * @return void
+     * @param  asyncHandler async handler instance
      * @throws ApiException api exception
      * @throws HttpRequestException http request exception
      * @throws HttpResponseException http response exception
      */
     public void sendBinaryMessage(AsyncHandler asyncHandler)
         throws ApiException, HttpRequestException, HttpResponseException {
-        
+
         // call send binary message
         this.sendBinaryMessage(
-            this.userDataHeader, 
-            this.dataCodingScheme, 
-            this.receiverAddress, 
+            this.userDataHeader,
+            this.dataCodingScheme,
+            this.receiverAddress,
             this.binaryMessage,
             asyncHandler);
     }

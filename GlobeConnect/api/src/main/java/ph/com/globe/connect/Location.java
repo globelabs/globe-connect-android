@@ -1,4 +1,4 @@
-/* 
+/*
  * The MIT License
  *
  * Copyright 2016 charleszamora.
@@ -29,32 +29,32 @@ import org.apache.http.client.utils.URIBuilder;
 
 /**
  * Location Based Services class.
- * 
+ *
  * @author Charles Zamora czamora@openovate.com
  */
 public class Location extends Context {
     /* Location API Url */
     private final String LOCATION_URL = "https://devapi.globelabs.com.ph/location/v1/queries/location";
-    
+
     /* API Access token */
     protected String accessToken = null;
-    
+
     /* Subscribers address */
     protected String address = null;
-    
+
     /* Prefered accuracy of the result */
     protected int requestedAccuracy = 0;
-    
+
     /**
      * Create Location class without parameters.
      */
     public Location() {
     }
-    
+
     /**
      * Create Location class with access_token
      * parameter.
-     * 
+     *
      * @param accessToken access token
      */
     public Location(String accessToken) {
@@ -64,50 +64,49 @@ public class Location extends Context {
 
     /**
      * Sets access token.
-     * 
+     *
      * @param  accessToken access token
      * @return this
      */
     public Location setAccessToken(String accessToken) {
         // set access token
         this.accessToken = accessToken;
-        
+
         return this;
     }
-    
+
     /**
      * Set subscriber address.
-     * 
+     *
      * @param  address subscriber address
      * @return this
      */
     public Location setAddress(String address) {
         // set address
         this.address = address;
-        
+
         return this;
     }
-    
+
     /**
      * Set accuracy.
-     * 
+     *
      * @param  requestedAccuracy requested accuracy
      * @return this
      */
     public Location setRequestedAccuracy(int requestedAccuracy) {
         // set requested accuracy
         this.requestedAccuracy = requestedAccuracy;
-        
+
         return this;
     }
-    
+
     /**
      * Get location request.
-     * 
+     *
      * @param  address subscriber address
      * @param  requestedAccuracy request accuracy
-     * @param  asyncHandler
-     * @return HttpResponse
+     * @param  asyncHandler async handler instance
      * @throws ApiException api exception
      * @throws HttpRequestException http request exception
      * @throws HttpResponseException http response exception
@@ -117,23 +116,23 @@ public class Location extends Context {
         int requestedAccuracy,
         AsyncHandler asyncHandler)
         throws ApiException, HttpRequestException, HttpResponseException {
-        
+
         // try parsing url
         try {
             // initialize url builder
             URIBuilder builder = new URIBuilder(this.LOCATION_URL);
-            
+
             // set access token parameter
             builder.setParameter("access_token", this.accessToken);
             // set address parameter
             builder.setParameter("address", address);
             // set requested accuracy parameter
             builder.setParameter("requestedAccuracy", Integer.toString(requestedAccuracy));
-            
-            
+
+
             // build the url
             String url = builder.build().toString();
-            
+
             // send request
             new HttpRequest()
             // set url
@@ -148,19 +147,18 @@ public class Location extends Context {
             throw new ApiException(e.getMessage());
         }
     }
-    
+
     /**
      * Get location request.
      *
-     * @param  asyncHandler
-     * @return void
+     * @param  asyncHandler async handler instance
      * @throws ApiException api exception
      * @throws HttpRequestException http request exception
      * @throws HttpResponseException http response exception
      */
     public void getLocation(AsyncHandler asyncHandler)
         throws ApiException, HttpRequestException, HttpResponseException {
-        
+
         // call get location
         this.getLocation(this.address, this.requestedAccuracy, asyncHandler);
     }

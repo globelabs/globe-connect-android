@@ -1,4 +1,4 @@
-/* 
+/*
  * The MIT License
  *
  * Copyright 2016 charleszamora.
@@ -31,54 +31,54 @@ import org.apache.http.client.utils.URIBuilder;
 
 /**
  * USSD Class.
- * 
+ *
  * @author Charles Zamora czamora@openovate.com
  */
 public class Ussd extends Context {
     /* USSD Send url */
     private final String USSD_SEND_NI_URL = "https://devapi.globelabs.com.ph/ussd/v1/outbound/%s/send/requests";
-    
+
     /* USSD Reply url */
     private final String USSD_REPLY_MT_URL = "https://devapi.globelabs.com.ph/ussd/v1/outbound/%s/reply/requests";
-    
+
     /* Sender address (Short Code) */
     protected String senderAddress = null;
-    
+
     /* API Access token */
     protected String accessToken = null;
-    
+
     /* USSD Message */
     protected String ussdMessage = null;
-    
+
     /* Subscriber address */
     protected String address = null;
-    
+
     /* Final message flag */
     protected boolean flash = false;
-    
+
     /* USSD Session id */
     protected String sessionId = null;
-    
+
     /**
      * Create Ussd class without parameters.
      */
     public Ussd() {
     }
-    
+
     /**
      * Create Ussd class with accessToken parameter.
-     * 
+     *
      * @param accessToken access token
      */
     public Ussd(String accessToken) {
         // set access token
         this.accessToken = accessToken;
     }
-    
+
     /**
      * Create Ussd class with senderAddress and
      * accessToken parameter.
-     * 
+     *
      * @param senderAddress subscriber address
      * @param accessToken access token
      */
@@ -88,94 +88,93 @@ public class Ussd extends Context {
         // set access token
         this.accessToken = accessToken;
     }
-    
+
     /**
      * Sets sender address (Short Code)
-     * 
+     *
      * @param  senderAddress subscriber address
-     * @return this 
+     * @return this
      */
     public Ussd setSenderAddress(String senderAddress) {
         // set sender address
         this.senderAddress = senderAddress;
-        
+
         return this;
     }
-    
+
     /**
      * Sets access token.
-     * 
+     *
      * @param  accessToken access token
      * @return this
      */
     public Ussd setAccessToken(String accessToken) {
         // set access token
         this.accessToken = accessToken;
-        
+
         return this;
     }
-    
+
     /**
      * Set ussd message.
-     * 
+     *
      * @param  ussdMessage ussd message
      * @return this
      */
     public Ussd setUssdMessage(String ussdMessage) {
         // set ussd message
         this.ussdMessage = ussdMessage;
-        
+
         return this;
     }
-    
+
     /**
      * Set subscriber address.
-     * 
+     *
      * @param  address subscriber address
      * @return this
      */
     public Ussd setAddress(String address) {
         // set subscriber address
         this.address = address;
-        
+
         return this;
     }
-    
+
     /**
      * Set flash.
-     * 
+     *
      * @param  flash final message flag
      * @return this
      */
     public Ussd setFlash(boolean flash) {
         // set flash
         this.flash = flash;
-        
+
         return this;
     }
-    
+
     /**
      * Set session id.
-     * 
+     *
      * @param  sessionId session id
      * @return this
      */
     public Ussd setSessionId(String sessionId) {
         // set session id
         this.sessionId = sessionId;
-        
+
         return this;
     }
-    
+
     /**
      * Send USSD Request.
-     * 
+     *
      * @param  senderAddress sender address
      * @param  ussdMessage ussd message
      * @param  address subscriber address
      * @param  flash final message flag
-     * @param  asyncHandler
-     * @return void
+     * @param  asyncHandler async handler instance
      * @throws ApiException api exception
      * @throws HttpRequestException http request exception
      * @throws HttpResponseException http response exception
@@ -187,32 +186,32 @@ public class Ussd extends Context {
         boolean flash,
         AsyncHandler asyncHandler)
         throws ApiException, HttpRequestException, HttpResponseException {
-        
+
         // build url
         String url = this.buildUrl(this.USSD_SEND_NI_URL);
-        
+
         // set base data
         Map<String, Object> data = new HashMap<>();
-        
+
         // set outbound ussd message request
         Map<String, Object> oumr = new HashMap<>();
-        
+
         // set message data
         Map<String, String> msg = new HashMap<>();
-        
+
         // set sender address
         oumr.put("senderAddress", senderAddress);
         // set address
         oumr.put("address", address);
         // set flash
         oumr.put("flash", flash);
-        
+
         // set message
         msg.put("message", ussdMessage);
-        
+
         // set message
         oumr.put("outboundUSSDMessage", new org.json.JSONObject(msg));
-        
+
         // set on base data
         data.put("outboundUSSDMessageRequest", new org.json.JSONObject(oumr));
 
@@ -227,37 +226,35 @@ public class Ussd extends Context {
         // execute async post
         .execute("post");
     }
-    
+
     /**
      * Send USSD Request.
      *
-     * @param  asyncHandler
-     * @return void
+     * @param  asyncHandler async handler instance
      * @throws ApiException api exception
      * @throws HttpRequestException http request exception
      * @throws HttpResponseException http response exception
      */
     public void sendUssdRequest(AsyncHandler asyncHandler)
         throws ApiException, HttpRequestException, HttpResponseException {
-        
+
          // call send ussd request
          this.sendUssdRequest(
-            this.senderAddress, 
-            this.ussdMessage, 
-            this.address, 
+            this.senderAddress,
+            this.ussdMessage,
+            this.address,
             this.flash,
             asyncHandler);
     }
-    
+
     /**
      * Reply USSD Request.
-     * 
+     *
      * @param  sessionId session id
      * @param  senderAddress sender address
      * @param  address subscriber address
      * @param  flash final message flag
-     * @param  asyncHandler
-     * @return void
+     * @param  asyncHandler async handler instance
      * @throws ApiException api exception
      * @throws HttpRequestException http request exception
      * @throws HttpResponseException http response exception
@@ -269,19 +266,19 @@ public class Ussd extends Context {
         boolean flash,
         AsyncHandler asyncHandler)
         throws ApiException, HttpRequestException, HttpResponseException {
-        
+
         // build url
         String url = this.buildUrl(this.USSD_REPLY_MT_URL);
-        
+
         // set base data
         Map<String, Object> data = new HashMap<>();
-        
+
         // set outbound ussd message request
         Map<String, Object> oumr = new HashMap<>();
-        
+
         // set message data
         Map<String, String> msg = new HashMap<>();
-        
+
         // set sender address
         oumr.put("senderAddress", senderAddress);
         // set address
@@ -290,13 +287,13 @@ public class Ussd extends Context {
         oumr.put("sessionID", sessionId);
         // set flash
         oumr.put("flash", flash);
-        
+
         // set message
         msg.put("message", ussdMessage);
-        
+
         // set message
         oumr.put("outboundUSSDMessage", new org.json.JSONObject(msg));
-        
+
         // set on base data
         data.put("outboundUSSDMessageRequest", new org.json.JSONObject(oumr));
 
@@ -311,31 +308,30 @@ public class Ussd extends Context {
         // execute async post
         .execute("post");
     }
-    
+
     /**
      * Reply USSD Request.
      *
-     * @param  asyncHandler
-     * @return void
+     * @param  asyncHandler async handler instance
      * @throws ApiException api exception
      * @throws HttpRequestException http request exception
      * @throws HttpResponseException http response exception
      */
     public void replyUssdRequest(AsyncHandler asyncHandler)
         throws ApiException, HttpRequestException, HttpResponseException {
-        
+
         // call reply ussd request
         this.replyUssdRequest(
-            this.sessionId, 
-            this.senderAddress, 
-            this.address, 
+            this.sessionId,
+            this.senderAddress,
+            this.address,
             this.flash,
             asyncHandler);
     }
-    
+
     /**
      * Build request url.
-     * 
+     *
      * @param  url target url
      * @return String
      * @throws ApiException api exception
@@ -347,13 +343,13 @@ public class Ussd extends Context {
             url = String.format(url, this.senderAddress);
             // initialize url builder
             URIBuilder builder = new URIBuilder(url);
-            
+
             // set access token parameter
             builder.setParameter("access_token", this.accessToken);
-            
+
             // build the url
             url = builder.build().toString();
-            
+
             return url;
         } catch(URISyntaxException e) {
             // throw exception
