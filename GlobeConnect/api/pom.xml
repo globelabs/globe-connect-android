@@ -4,7 +4,7 @@
 
     <groupId>ph.com.globe.connect</groupId>
     <artifactId>globe-connect-android</artifactId>
-    <version>0.0.5</version>
+    <version>0.0.7</version>
     <packaging>jar</packaging>
 
     <name>Globe Connect</name>
@@ -101,7 +101,8 @@
         <dependency>
             <groupId>com.google.android</groupId>
             <artifactId>android</artifactId>
-            <version>4.1.1.4</version>
+            <version>4.0.1.2</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
