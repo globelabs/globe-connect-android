@@ -6,7 +6,7 @@ Below are the step by step procedure on how to install the sdk on your new or ex
 
 - Java >= 7
 - Android SDK (minimum version 14, target version 25)
-- Android API 16 to 24 is the current support.
+- Android API >= 16
 - Android Studio (or other IDE with the same functionality, we will use Android Studio for most of the examples).
 
 #### Step 1. Go to the SDK Builder page.
