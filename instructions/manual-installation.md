@@ -4,7 +4,7 @@ Below are the step by step procedure on how to install the sdk on your new or ex
 
 ## Requirements
 
-- Java 8
+- Java >= 7
 - Android SDK (minimum version 14, target version 25)
 - Android API 16 to 24 is the current support.
 - Android Studio (or other IDE with the same functionality, we will use Android Studio for most of the examples).
@@ -33,4 +33,38 @@ select Import Gradle Project, we are going to import the sdk as a Gradle Project
 set the module name, this should be unique and is related to the module that we are going to import, we're going to use :globeconnect as the module name, the ":" prefix is required because of gradle so you should always prefix the module name with ":", after putting the module name, hit "Finish" then let's proceed to the next step.
 ![Set Module Name](manual/step-2-f.png)
 
+>***NOTE*** After hitting "Finish", hit the "OK" button of the module settings window and wait for the Gradle Sync process to finish.
+
 ### Step 3. Setting the SDK as Project Dependency.
+
+So the SDK is already included in the project but we need to add it as a dependency of our project, re-open Module Settings on the left side there is a Modules section, click on the "app" section, on the top most section click "Dependencies" tab and it should look like this:
+![Dependecy Window](manual/step-3-a.png)
+
+Hit the plus sign at the bottom and hit "Module Dependency"
+![Module Dependency](manual/step-3-b.png)
+
+... and select the ":globeconnect" module or whatever name that you have set earlier for the module, now your dependency list should look like this:
+![Dependency List](manual/step-3-c.png)
+
+hit "OK" and just wait for the Gradle Sync process to finish.
+
+Now you should be able to see the autocompletion for the globe connect module, you can test it out by trying to import the module using the namespace ph.com.globe.connect, the autocomplete result should look like this:
+![Auto Complete](manual/step-3-d.png)
+
+When you start working with the sdk a few import directive is required for you to be able to work with the sdk, you are required to import:
+- ```org.json.JSONObject``` (for handling the response results)
+- ```org.json.JSONException``` (for handling json parsing errors)
+
+Please also take into consideration that most of the SDK's API calls (HTTP Requests) are done asynchronously and is running on a separate thread so that the API calls are not interrupting the main UI Thread, this keeps the UI from lagging every time the app is executing an HTTP request.
+
+### Extras
+
+Here are some additional things to consider before building the app that includes the sdk.
+
+### Android Permission
+
+The sdk requires the INTERNET permission, to allow the sdk to use the INTERNET please put this xml snippet into your app's AndroidManifest.xml file.
+
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+```
