@@ -6,6 +6,12 @@ Sms etc. that is easy to use and can be integrated in your existing Android appl
 some samples on how to use the API depending on the functionality that you need to integrate in your
 application.
 
+## Installation
+There are two ways to install the sdk, manual or via the central repository, please refer to the links below for installation instructions.
+
+- For manual installation (via SDK Builder) click [here](https://github.com/globelabs/globe-connect-android/tree/master/instructions/manual-installation.md)
+- For installation via Maven Central, Gradle click [here](https://github.com/globelabs/globe-connect-android/tree/master/instructions/installation-via-maven.md)
+
 ## Basic Usage
 
 ###### Figure 1. Authentication
