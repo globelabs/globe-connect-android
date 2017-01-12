@@ -61,10 +61,10 @@ Please also take into consideration that most of the SDK's API calls (HTTP Reque
 
 Here are some additional things to consider before building the app that includes the sdk.
 
-### Android Permission
+- ###### Android Permission
 
-The sdk requires the INTERNET permission, to allow the sdk to use the INTERNET please put this xml snippet into your app's AndroidManifest.xml file.
+    The sdk requires the INTERNET permission, to allow the sdk to use the INTERNET please put this xml snippet into your app's AndroidManifest.xml file.
 
-```xml
-<uses-permission android:name="android.permission.INTERNET" />
-```
+    ```xml
+    <uses-permission android:name="android.permission.INTERNET" />
+    ```
