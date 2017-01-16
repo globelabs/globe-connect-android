@@ -26,14 +26,15 @@ public class MainActivity extends AppCompatActivity {
         // if request code is = 1
         if(requestCode == 1) {
             // and is activity result ok
-            if(resultCode == Activity.RESULT_OK){
-                // get the code
-                String code = data.getStringExtra("code");
-
-                // process access token
+            if(resultCode == Activity.RESULT_OK) {
+                // parse string
                 try {
-                    this.getAccessToken(code);
-                } catch(ApiException | HttpRequestException e) {
+                    JSONObject response = new JSONObject(data.getStringExtra("auth_response"));
+
+                    EditText out = (EditText) findViewById(R.id.output);
+                    out.setText(response.toString(5));
+                } catch(JSONException e) {
+                    e.printStackTrace();
                 }
             }
         }
@@ -41,34 +42,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void authFlow(View view) {
         Intent intent = new Intent(getApplicationContext(), GlobeAuthActivity.class);
+
         intent.putExtra("app_id", "5ozgSgeRyeHzacXo55TR65HnqoAESbAz");
+        intent.putExtra("app_secret", "3dbcd598f268268e13550c87134f8de0ec4ac1100cf0a68a2936d07fc9e2459e");
 
         startActivityForResult(intent, 1);
-    }
-
-    public void getAccessToken(String code) throws ApiException, HttpRequestException {
-        String appId = "5ozgSgeRyeHzacXo55TR65HnqoAESbAz";
-        String appSecret = "3dbcd598f268268e13550c87134f8de0ec4ac1100cf0a68a2936d07fc9e2459e";
-
-        Authentication auth = new Authentication(appId, appSecret);
-
-        try {
-            auth.getAccessToken("G4HBMexKfaM9E7SG4LpkHRBoLGf9Go6qSnBno8HRKXnes7doqEukgq4bCq59nKfR7KX6Uorknysa8EXyHoxEaRhzGo57tLn4gduLkaE7S9ke9RtpBjgauaeRKpu4RcoX6y4cRaxuGzjkKuyzedXtkra8qSbe47LueyonxtgoEorhpkEoaHLkkResXyKR4U4K996f4EqB7CRLoKGuBjXorsAxnrpH9poqrSAEo6ef7XLGXHyK9R9SLregxfaM6XxH",
-                    new AsyncHandler() {
-                        @Override
-                        public void response(HttpResponse response) throws HttpResponseException {
-                            try {
-                                JSONObject json = new JSONObject(response.getJsonResponse().toString());
-                                System.out.println(json.toString());
-                                EditText out = (EditText) findViewById(R.id.output);
-                                out.setText(json.toString(5));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-        } catch(HttpResponseException e) {
-        }
     }
 
     public void sendSms(View view) throws ApiException, HttpRequestException {

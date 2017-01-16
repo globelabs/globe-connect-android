@@ -34,6 +34,8 @@ import android.webkit.WebResourceRequest;
 
 import java.net.URISyntaxException;
 import org.apache.http.client.utils.URIBuilder;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Authentication Activity class.
@@ -62,6 +64,11 @@ public class AuthenticationActivity extends AppCompatActivity {
         // set content view of the activity
         setContentView(webview);
 
+        // get the app id from intent
+        final String appId        = getIntent().getStringExtra("app_id");
+        // get the app secret from intent
+        final String appSecret    = getIntent().getStringExtra("app_secret");
+
         // set web view client
         webview.setWebViewClient(new WebViewClient() {
             /**
@@ -79,11 +86,15 @@ public class AuthenticationActivity extends AppCompatActivity {
 
                 // are we still on globe labs?
                 if(uri.toString().indexOf(rootUrl) != 0) {
-                    // call success method
-                    onSuccess(uri.getQueryParameter("code"));
+                    // get the code
+                    String code = uri.getQueryParameter("code");
 
-                    // finish activity
-                    finish();
+                    // get access token request
+                    try {
+                        getAccessToken(appId, appSecret, code);
+                    } catch(ApiException | HttpRequestException e) {
+                        e.printStackTrace();
+                    }
 
                     return false;
                 }
@@ -109,11 +120,15 @@ public class AuthenticationActivity extends AppCompatActivity {
 
                 // are we still on globe labs?
                 if(uri.toString().indexOf(rootUrl) != 0) {
-                    // call success method
-                    onSuccess(uri.getQueryParameter("code"));
+                    // get the code
+                    String code = uri.getQueryParameter("code");
 
-                    // finish activity
-                    finish();
+                    // get access token request
+                    try {
+                        getAccessToken(appId, appSecret, code);
+                    } catch(ApiException | HttpRequestException e) {
+                        e.printStackTrace();
+                    }
 
                     return false;
                 }
@@ -126,9 +141,6 @@ public class AuthenticationActivity extends AppCompatActivity {
         });
 
         try {
-            // get the app id from intent
-            String appId = getIntent().getStringExtra("app_id");
-
             // set dialog url
             String dialogUrl = this.buildUrl(this.dialogUrl, appId);
 
@@ -142,9 +154,50 @@ public class AuthenticationActivity extends AppCompatActivity {
     /**
      * On success handler.
      *
-     * @param code authentication code
+     * @param results json result
      */
-    public void onSuccess(String code) {}
+    public void onSuccess(JSONObject results) {}
+
+    /**
+     * Get access token request.
+     *
+     * @param appId application id
+     * @param appSecret application secret
+     * @param code access token request code
+     * @throws ApiException
+     * @throws HttpRequestException http request exception
+     */
+    public void getAccessToken(String appId, String appSecret, String code)
+            throws ApiException, HttpRequestException {
+
+        // initialize authentication object
+        Authentication auth = new Authentication(appId, appSecret);
+
+        // try request
+        try {
+            // send get access token request
+            auth.getAccessToken(code,
+                    new AsyncHandler() {
+                        @Override
+                        public void response(HttpResponse response) throws HttpResponseException {
+                            try {
+                                // get the response
+                                JSONObject json = new JSONObject(response.getJsonResponse().toString());
+
+                                // call on success
+                                onSuccess(json);
+
+                                // exit activity
+                                finish();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+        } catch(HttpResponseException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Build request url.

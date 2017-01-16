@@ -1,18 +1,21 @@
 package ph.com.globe.connect.sample;
 
-import android.app.Activity;
 import android.content.Intent;
+
+import org.json.JSONObject;
+
 import ph.com.globe.connect.AuthenticationActivity;
 
 public class GlobeAuthActivity extends AuthenticationActivity {
     @Override
-    public void onSuccess(String code) {
-        // start the code intent
-        Intent codeIntent = new Intent();
-        // put the code result
-        codeIntent.putExtra("code", code);
+    public void onSuccess(JSONObject results) {
+        // create new intent for response
+        Intent response = new Intent();
+
+        // put auth response string
+        response.putExtra("auth_response", results.toString());
 
         // now set activity result
-        setResult(Activity.RESULT_OK, codeIntent);
+        setResult(this.RESULT_OK, response);
     }
 }
