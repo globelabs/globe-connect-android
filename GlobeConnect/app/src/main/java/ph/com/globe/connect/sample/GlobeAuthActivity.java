@@ -1,9 +1,7 @@
 package ph.com.globe.connect.sample;
 
 import android.content.Intent;
-
 import org.json.JSONObject;
-
 import ph.com.globe.connect.AuthenticationActivity;
 
 public class GlobeAuthActivity extends AuthenticationActivity {

@@ -43,9 +43,9 @@ import org.json.JSONObject;
  * @author Charles Zamora czamora@openovate.com
  */
 public class AuthenticationActivity extends AppCompatActivity {
-    /** Root url */
+    /* Root url */
     private final String rootUrl = "http://developer.globelabs.com.ph/";
-    /** Dialog url */
+    /* Dialog url */
     private final String dialogUrl = "http://developer.globelabs.com.ph/dialog/oauth";
 
     /**
@@ -177,23 +177,24 @@ public class AuthenticationActivity extends AppCompatActivity {
         try {
             // send get access token request
             auth.getAccessToken(code,
-                    new AsyncHandler() {
-                        @Override
-                        public void response(HttpResponse response) throws HttpResponseException {
-                            try {
-                                // get the response
-                                JSONObject json = new JSONObject(response.getJsonResponse().toString());
+                new AsyncHandler() {
+                    @Override
+                    public void response(HttpResponse response) throws HttpResponseException {
+                        try {
+                            // get the response
+                            JSONObject json = new JSONObject(response.getJsonResponse().toString());
 
-                                // call on success
-                                onSuccess(json);
+                            // call on success
+                            onSuccess(json);
 
-                                // exit activity
-                                finish();
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+                            // exit activity
+                            finish();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    });
+                    }
+                }
+            );
         } catch(HttpResponseException e) {
             e.printStackTrace();
         }
