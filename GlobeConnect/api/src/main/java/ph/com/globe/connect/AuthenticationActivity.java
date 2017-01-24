@@ -44,9 +44,9 @@ import org.json.JSONObject;
  */
 public class AuthenticationActivity extends AppCompatActivity {
     /* Root url */
-    private final String rootUrl = "http://developer.globelabs.com.ph/";
+    private final String ROOT_URL = "http://developer.globelabs.com.ph/";
     /* Dialog url */
-    private final String dialogUrl = "http://developer.globelabs.com.ph/dialog/oauth";
+    private final String DIALOG_URL = "http://developer.globelabs.com.ph/dialog/oauth";
 
     /**
      * On activity create process.
@@ -85,7 +85,7 @@ public class AuthenticationActivity extends AppCompatActivity {
                 final Uri uri = Uri.parse(url);
 
                 // are we still on globe labs?
-                if(uri.toString().indexOf(rootUrl) != 0) {
+                if(uri.toString().indexOf(ROOT_URL) != 0) {
                     // get the code
                     String code = uri.getQueryParameter("code");
 
@@ -119,7 +119,7 @@ public class AuthenticationActivity extends AppCompatActivity {
                 final Uri uri = Uri.parse(request.getUrl().toString());
 
                 // are we still on globe labs?
-                if(uri.toString().indexOf(rootUrl) != 0) {
+                if(uri.toString().indexOf(ROOT_URL) != 0) {
                     // get the code
                     String code = uri.getQueryParameter("code");
 
@@ -142,10 +142,10 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         try {
             // set dialog url
-            String dialogUrl = this.buildUrl(this.dialogUrl, appId);
+            String DIALOG_URL = this.buildUrl(this.DIALOG_URL, appId);
 
             // load the url
-            webview.loadUrl(dialogUrl);
+            webview.loadUrl(DIALOG_URL);
         } catch(ApiException e) {
             e.printStackTrace();
         }
@@ -212,7 +212,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         // try parsing url
         try {
             // build url
-            url = String.format(url, this.dialogUrl);
+            url = String.format(url, this.DIALOG_URL);
             // initialize url builder
             URIBuilder builder = new URIBuilder(url);
 
