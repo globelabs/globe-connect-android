@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
-    public void sendSms(View view) throws ApiException, HttpRequestException {
+    public void sendSms(View view) {
         Sms sms = new Sms("21584130", "JO3SpcC-AFiC461wgOxUPDmsOTc5YiMayoK1GnQcduc");
 
         try {
@@ -70,12 +70,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-        } catch(ApiException e) {
-        } catch(HttpResponseException e) {
+        } catch(ApiException | HttpRequestException | HttpResponseException e) {
+            e.printStackTrace();
         }
     }
 
-    public void sendBinarySms(View view) throws ApiException, HttpRequestException {
+    public void sendBinarySms(View view) {
         BinarySms sms = new BinarySms("21584130", "JO3SpcC-AFiC461wgOxUPDmsOTc5YiMayoK1GnQcduc");
 
         try {
@@ -96,12 +96,12 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-        } catch(ApiException e) {
-        } catch(HttpResponseException e) {
+        } catch(ApiException | HttpRequestException | HttpResponseException e) {
+            e.printStackTrace();
         }
     }
 
-    public void getLocation(View view) throws ApiException, HttpRequestException {
+    public void getLocation(View view) {
         Location location = new Location("JO3SpcC-AFiC461wgOxUPDmsOTc5YiMayoK1GnQcduc");
 
         try {
@@ -120,12 +120,12 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     });
-        } catch(ApiException e) {
-        } catch(HttpResponseException e) {
+        } catch(ApiException | HttpRequestException | HttpResponseException e) {
+            e.printStackTrace();
         }
     }
 
-    public void sendPayment(View view) throws ApiException, HttpRequestException {
+    public void sendPayment(View view) {
         try {
             Payment payment = new Payment("JO3SpcC-AFiC461wgOxUPDmsOTc5YiMayoK1GnQcduc");
 
@@ -148,9 +148,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
 
-            Payment payment2 = new Payment("JO3SpcC-AFiC461wgOxUPDmsOTc5YiMayoK1GnQcduc");
-
-            payment2
+            payment
                     .setAppId("5ozgSgeRyeHzacXo55TR65HnqoAESbAz")
                     .setAppSecret("3dbcd598f268268e13550c87134f8de0ec4ac1100cf0a68a2936d07fc9e2459e")
                     .getLastReferenceCode(new AsyncHandler() {
@@ -165,12 +163,12 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     });
-        } catch(ApiException e) {
-        } catch(HttpResponseException e) {
+        } catch(ApiException | HttpRequestException | HttpResponseException e) {
+            e.printStackTrace();
         }
     }
 
-    public void getSubscriber(View view) throws ApiException, HttpRequestException {
+    public void getSubscriber(View view) {
         try {
             Subscriber subscriber = new Subscriber("JO3SpcC-AFiC461wgOxUPDmsOTc5YiMayoK1GnQcduc");
 
@@ -189,9 +187,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
 
-            Subscriber subscriber2 = new Subscriber("JO3SpcC-AFiC461wgOxUPDmsOTc5YiMayoK1GnQcduc");
-
-            subscriber2
+            subscriber
                     .setAddress("639065272450")
                     .getSubscriberReloadAmount(new AsyncHandler() {
                         @Override
@@ -205,12 +201,12 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     });
-        } catch(ApiException e) {
-        } catch(HttpResponseException e) {
+        } catch(ApiException | HttpRequestException | HttpResponseException e) {
+            e.printStackTrace();
         }
     }
 
-    public void sendUssd(View view) throws ApiException, HttpRequestException {
+    public void sendUssd(View view) {
         try {
             Ussd ussd = new Ussd("JO3SpcC-AFiC461wgOxUPDmsOTc5YiMayoK1GnQcduc");
 
@@ -232,9 +228,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
 
-            Ussd ussd2 = new Ussd("JO3SpcC-AFiC461wgOxUPDmsOTc5YiMayoK1GnQcduc");
-
-            ussd2
+            ussd
                     .setSessionId("12345")
                     .setAddress("9065272450")
                     .setSenderAddress("21584130")
@@ -252,12 +246,12 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     });
-        } catch(ApiException e) {
-        } catch(HttpResponseException e) {
+        } catch(ApiException | HttpRequestException | HttpResponseException e) {
+            e.printStackTrace();
         }
     }
 
-    public void sendAmax(View view) throws ApiException, HttpRequestException {
+    public void sendAmax(View view) {
         String appId = "5ozgSgeRyeHzacXo55TR65HnqoAESbAz";
         String appSecret = "3dbcd598f268268e13550c87134f8de0ec4ac1100cf0a68a2936d07fc9e2459e";
 
@@ -280,11 +274,12 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     });
-        } catch(HttpResponseException e) {
+        } catch(HttpRequestException | HttpResponseException e) {
+            e.printStackTrace();
         }
     }
 
-    public void sendAuth(View view) throws ApiException, HttpRequestException {
+    public void sendAuth(View view) throws ApiException {
         String appId = "5ozgSgeRyeHzacXo55TR65HnqoAESbAz";
         String appSecret = "3dbcd598f268268e13550c87134f8de0ec4ac1100cf0a68a2936d07fc9e2459e";
 
@@ -310,7 +305,8 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     });
-        } catch(HttpResponseException e) {
+        } catch(HttpRequestException | HttpResponseException e) {
+            e.printStackTrace();
         }
     }
 }
