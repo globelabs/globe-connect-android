@@ -63,8 +63,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
             try {
                 JSONObject response = new JSONObject(data.getStringExtra("auth_response"));
 
-                EditText out = (EditText) findViewById(R.id.output);
-                out.setText(response.toString(5));
+                System.out.println(response.toString()); // <-- will return the access token
             } catch(JSONException e) {
                 e.printStackTrace();
             }
