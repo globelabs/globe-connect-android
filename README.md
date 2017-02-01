@@ -1,5 +1,5 @@
 
-## Android
+## Globe Connect for Android
 
 ### Setting Up
 
