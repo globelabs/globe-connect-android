@@ -23,11 +23,11 @@
  */
 package ph.com.globe.connect;
 
+import android.app.Activity;
 import android.annotation.TargetApi;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.WebResourceRequest;
@@ -42,7 +42,7 @@ import org.json.JSONObject;
  *
  * @author Charles Zamora czamora@openovate.com
  */
-public class AuthenticationActivity extends AppCompatActivity {
+public class AuthenticationActivity extends Activity {
     /* Root url */
     private final String ROOT_URL = "http://developer.globelabs.com.ph/";
     /* Dialog url */
@@ -164,7 +164,7 @@ public class AuthenticationActivity extends AppCompatActivity {
      * @param appId application id
      * @param appSecret application secret
      * @param code access token request code
-     * @throws ApiException
+     * @throws ApiException api exception
      * @throws HttpRequestException http request exception
      */
     public void getAccessToken(String appId, String appSecret, String code)
