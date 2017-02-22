@@ -3,8 +3,8 @@
 
 ### Setting Up
 
-Please refer to this [link](https://github.com/globelabs/globe-connect-android/blob/master/instructions/manual-installation.md) for manual installation of the Globe Connect Android SDK.
-        <br />Please refer to this [link](https://github.com/globelabs/globe-connect-android/blob/master/instructions/installation-via-maven.md) to install the Globe Connect Android SDK via Maven Central.
+Please refer to this <a target="_blank" href="https://github.com/globelabs/globe-connect-android/blob/master/instructions/manual-installation.md">link</a> for manual installation of the Globe Connect Android SDK.
+        <br />Please refer to this <a target="_blank" href="https://github.com/globelabs/globe-connect-android/blob/master/instructions/installation-via-maven.md">link</a> to install the Globe Connect Android SDK via Maven Central.
 
 ### Authentication
 
@@ -506,7 +506,7 @@ try {
 
 #### Overview
 
-TODO
+Subscriber Data Query API interface allows a Web application to query the customer profile of an end user who is the customer of a mobile network operator.
 
 #### Subscriber Balance
 
